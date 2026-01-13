@@ -1,14 +1,12 @@
 ![PyPI Version](https://img.shields.io/pypi/v/auditly.svg)
-![Dependencies](https://img.shields.io/librariesio/release/pypi/auditly)
 ![PyPI - License](https://img.shields.io/pypi/l/auditly)
 
 
 # Auditly
 
-**Auditly** is an enterprise-ready dependency vulnerability auditing tool designed for modern developers and organizations.  
-It goes beyond traditional scanners by detecting vulnerabilities not only in **direct dependencies**, but also in **sub-dependencies (transitive dependencies)** — a critical security gap in many tools today.
+**Auditly** is a modern, developer-friendly **Python dependency security and dependency-analysis CLI tool** that helps teams **identify vulnerabilities, risky versions, and dependency issues early** — before they reach production.
 
-Auditly focuses on **actionable security**, helping developers quickly understand risks, fix issues, and maintain secure dependency chains.
+Auditly focuses on **clarity, speed, and actionable output**, making security **understandable and fixable** for developers.
 
 ---
 
@@ -17,10 +15,14 @@ Auditly focuses on **actionable security**, helping developers quickly understan
 Most dependency scanners stop at direct dependencies.  
 Auditly goes deeper.
 
--Detects vulnerabilities hidden inside sub-dependencies  
--Provides clear fix suggestions  
--Clean, developer-friendly CLI output  
--Ready for CI/CD and enterprise pipelines  
+- Simple CLI, zero configuration
+- Scans installed environments & `requirements.txt`
+- Optional **transitive dependency scanning**
+- **Dependency tree visualization**
+- Highlights vulnerable & risky package versions
+- Shows fix suggestions when available
+- JSON output for CI/CD pipelines
+- Enterprise-ready foundation
 
 ---
 
@@ -34,32 +36,34 @@ Auditly goes deeper.
 | **Optional transitive scan** | Scans all sub-dependencies recursively (use `--transitive`) | Yes |
 | **JSON output** | Pretty JSON output for CI/CD pipelines (use `--json`) | Yes |
 | **Requirements.txt scan** | Scan packages listed in a requirements file | Yes |
+| **Dependency tree visualization** | Visualize the dependency hierarchy of your project | Yes |
+---
+
+## Package Details
+
+| **Detail**              | **Description**                                                                 |
+|-------------------------|---------------------------------------------------------------------------------|
+| **Package Name**        | `auditly`                                                                       |
+| **Version**             | `0.1.1`                                                                        |
+| **Author**              | Krishna Tadi                                                                   |
+| **Description**         | Auditly is a next-generation Python dependency vulnerability scanner.          |
+| **License**             | MIT                                                                            |
+| **Python Version**      | >= 3.7                                                                         |
+| **Source Code**         | [GitHub Repository](https://github.com/krishnatadi/auditly-pypi)               |
+| **Bug Tracker**         | [GitHub Issues](https://github.com/krishnatadi/auditly-pypi/issues)            |
+| **PyPI**                | [Auditly on PyPI](https://pypi.org/project/auditly)                            |
+
 ---
 
 ## Installation
 
-This package is available through the [PyPI registry](__https://pypi.org/project/random-password-toolkit/__).
-
-Before installing, ensure you have Python 3.6 or higher installed. You can download and install Python from [python.org](__https://www.python.org/downloads/__).
-
-You can install the package using `pip`:
+To install Auditly, use the following command:
 
 ```bash
 pip install auditly
-
 ```
----
 
-### What Makes Auditly Unique?
-
-| Capability                    | Traditional Tools | Auditly |
-|-------------------------------|-------------------|---------|
-| Direct dependency scan        | Supported         | Supported |
-| Sub-dependency scan           | Not supported     | Supported |
-| Fix recommendations           | Not supported     | Supported |
-| Progress feedback             | Not supported     | Supported |
-| Clean summary statistics      | Not supported     | Supported |
-
+Ensure you have Python 3.7 or higher installed. You can download Python from [python.org](https://www.python.org/downloads/).
 
 ---
 
@@ -67,11 +71,15 @@ pip install auditly
 
 Auditly can be run as a CLI tool. Below is a summary of all available commands and flags.
 
-| Command / Flag        | Description                                                         | Example                          |
-|-----------------------|---------------------------------------------------------------------|----------------------------------|
-| `-r`, `--requirements` | Scan a `requirements.txt` file instead of the installed environment | `auditly -r requirements.txt`    |
-| `--json`              | Output results in JSON format with detailed issue resolution info, useful for CI/CD                     | `auditly --json`                 |
-| `--transitive`        | Scan all sub-dependencies recursively (deep scan)                  | `auditly --transitive`           |
+| Command | Description |
+|--------|-------------|
+| `auditly` | Scan installed Python environment |
+| `auditly --transitive` | Scan environment including sub-dependencies |
+| `auditly -r requirements.txt` | Scan dependencies from a requirements file |
+| `auditly -r requirements.txt --transitive` | Scan requirements including transitive dependencies |
+| `auditly --json` | Output results in JSON format |
+| `auditly pkg --tree` | Show dependency tree for entire environment |
+| `auditly pkg <package>==<version> --tree` | Show dependency tree for a specific package version |
 
 
 ---
@@ -158,6 +166,42 @@ auditly --json
 ```
 
 ---
+## Dependency Tree Feature
+
+Auditly includes a powerful **Dependency Tree Visualization** feature that allows you to view the entire dependency hierarchy of your Python project. This feature is particularly useful for identifying transitive dependencies and understanding how packages are interconnected.
+
+### Commands for Dependency Tree
+
+| **Command / Flag**              | **Description**                                                                 | **Example**                          |
+|---------------------------------|---------------------------------------------------------------------------------|--------------------------------------|
+| `auditly pkg requests==<version> --tree` | Displays the dependency tree for a specific package and version               | `auditly pkg requests==2.31.0 --tree`|
+| `auditly pkg --tree`            | Displays the dependency tree for all packages in the installed environment      | `auditly pkg --tree`                 |
+
+### Example Output
+
+```bash
+auditly pkg --tree
+```
+
+**Output:**
+
+```text
+[auditly] Dependency Tree
+
+flask==2.0.3
+├── Werkzeug>=2.0
+├── Jinja2>=3.0
+│   └── MarkupSafe>=2.0
+└── itsdangerous>=2.0
+
+requests==2.31.0
+└── urllib3>=1.26.5
+```
+
+This output shows the top-level dependencies and their sub-dependencies, making it easy to identify potential issues or vulnerabilities in the dependency chain.
+
+---
+
 ## Discussions
 - **GitHub Discussions**: Share use cases, report bugs, and suggest features.
 
@@ -173,11 +217,11 @@ If you have an idea for a new feature, please open a feature request in the Issu
 ---
 
 ## Issues and Feedback
-For issues, feedback, and feature requests, please open an issue on our [GitHub Issues page](http://github.com/krishnatadi/auditly-python/issues). We actively monitor and respond to community feedback.
+For issues, feedback, and feature requests, please open an issue on our [GitHub Issues page](http://github.com/krishnatadi/auditly-pypi/issues). We actively monitor and respond to community feedback.
 
 ---
 
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/Krishnatadi/auditly-python/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/Krishnatadi/auditly-pypi/blob/main/LICENSE) file for details.

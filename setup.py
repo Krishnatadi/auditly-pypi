@@ -31,6 +31,6 @@ setup(
     python_requires=">=3.7",
     install_requires=[
         "requests>=2.31.0",
-        "tqdm"
+        "tqdm>=4.64.0"
     ],
 )
