@@ -84,7 +84,7 @@ Auditly can be run as a CLI tool. Below is a summary of all available commands a
 | `auditly pkg --tree` | Show dependency tree for entire environment |
 | `auditly pkg <package>==<version> --tree` | Show dependency tree for a specific package version |
 | `auditly explain requests` | Explain an installed package |
-| `Explain an installed package` | Explain a specific version |
+| `auditly explain requests==2.32.5` | Explain a specific version |
 | `auditly explain flask==0.12` | Explain a known vulnerable package |
 
 
