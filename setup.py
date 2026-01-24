@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="auditly",
-    version="0.1.1",
+    version="0.1.2",
     author="Krishna Tadi",
     description="Auditly is a next-generation Python dependency vulnerability scanner that helps developers identify security risks in installed packages and requirements.txt files, providing clear severity levels and fix recommendations.",
     long_description=open("README.md").read(),

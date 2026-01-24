@@ -23,6 +23,8 @@ Auditly goes deeper.
 - Shows fix suggestions when available
 - JSON output for CI/CD pipelines
 - Enterprise-ready foundation
+- Identifies the package and version
+- Displays the package description and metadata
 
 ---
 
@@ -37,6 +39,7 @@ Auditly goes deeper.
 | **JSON output** | Pretty JSON output for CI/CD pipelines (use `--json`) | Yes |
 | **Requirements.txt scan** | Scan packages listed in a requirements file | Yes |
 | **Dependency tree visualization** | Visualize the dependency hierarchy of your project | Yes |
+| **Explain Feature** | Get complete information about package `auditly explain <package name>` | Yes |
 ---
 
 ## Package Details
@@ -44,7 +47,7 @@ Auditly goes deeper.
 | **Detail**              | **Description**                                                                 |
 |-------------------------|---------------------------------------------------------------------------------|
 | **Package Name**        | `auditly`                                                                       |
-| **Version**             | `0.1.1`                                                                        |
+| **Version**             | `0.1.2`                                                                        |
 | **Author**              | Krishna Tadi                                                                   |
 | **Description**         | Auditly is a next-generation Python dependency vulnerability scanner.          |
 | **License**             | MIT                                                                            |
@@ -80,6 +83,9 @@ Auditly can be run as a CLI tool. Below is a summary of all available commands a
 | `auditly --json` | Output results in JSON format |
 | `auditly pkg --tree` | Show dependency tree for entire environment |
 | `auditly pkg <package>==<version> --tree` | Show dependency tree for a specific package version |
+| `auditly explain requests` | Explain an installed package |
+| `Explain an installed package` | Explain a specific version |
+| `auditly explain flask==0.12` | Explain a known vulnerable package |
 
 
 ---

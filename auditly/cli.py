@@ -13,6 +13,10 @@ from auditly.dep_tree import (
 )
 
 
+# NEW FEATURE: explain
+from auditly.explain import explain_package
+
+
 def main():
     # ========================
     # NEW: pkg --tree FEATURE
@@ -38,6 +42,22 @@ def main():
 
             print("[auditly] Usage: auditly pkg <package>==<version> --tree")
             return
+        
+        
+    # ========================
+    # NEW: explain FEATURE
+    # ========================
+    if len(sys.argv) >= 3 and sys.argv[1] == "explain":
+        target = sys.argv[2]
+
+        if "==" in target:
+            pkg, ver = target.split("==", 1)
+        else:
+            pkg, ver = target, None
+
+        explain_package(pkg, ver)
+        return
+    
 
     # =====================
     # EXISTING SCANNERS
